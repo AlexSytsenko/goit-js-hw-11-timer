@@ -7,3 +7,36 @@ html {
 *::after {
   box-sizing: inherit;
 }
+
+body {
+background-color: palegreen;
+}
+
+.title {
+  margin-top: 150px;
+text-align: center;
+font-size: 44px;
+}
+
+.timer {
+ text-align: center;
+  margin-top: 100px;
+}
+
+.field {
+  display: inline-block;
+  margin-right: 30px;
+  
+  
+}
+
+.value {
+  
+  font-size: 56px;
+  
+}
+
+.label {
+  display: block;
+font-size: 24px;
+}
