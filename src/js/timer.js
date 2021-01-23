@@ -1,4 +1,48 @@
-const refs = {
+//Таймер написанный через класс
+class Countdown {
+    constructor(date, selector) {
+    
+        this.targetDate = new Date(date);
+        this.selector = selector;
+        this.anchorTag = document.querySelector(this.selector);
+        this.days = this.anchorTag.querySelector('[data-value="days"]');
+        this.hours = this.anchorTag.querySelector('[data-value="hours"]');
+        this.mins = this.anchorTag.querySelector('[data-value="mins"]');
+        this.secs = this.anchorTag.querySelector('[data-value="secs"]');
+    }
+    
+    startTimer() {
+        setInterval(() => {
+            const currentTime = Date.now();
+            const deltaTime = this.targetDate.getTime() - currentTime;
+
+            this.updateClockface(deltaTime); 
+        }, 1000);
+    }
+       
+    updateClockface(time) {
+        const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+        const hours = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+        const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+
+        this.days.textContent = days;
+        this.hours.textContent = hours;
+        this.mins.textContent = mins;
+        this.secs.textContent = secs;
+    }
+
+    pad(value) {
+        return String(value).padStart(2, '0');
+    }
+}
+
+const newYearTimer = new Countdown('Jan 01, 2022', "#timer-1");
+
+newYearTimer.startTimer();
+
+//Таймер написанный функциями
+/*const refs = {
     days: document.querySelector('[data-value="days"]'),
     hours: document.querySelector('[data-value="hours"]'),
     mins: document.querySelector('[data-value="mins"]'),
@@ -36,3 +80,5 @@ function updateClockface(time) {
 function pad(value) {
     return String(value).padStart(2, '0');
 }
+
+*/
